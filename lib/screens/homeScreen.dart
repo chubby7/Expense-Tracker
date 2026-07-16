@@ -1,5 +1,6 @@
 import 'package:expense_tracker/components/addButton.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/components/balanceCard.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,13 +25,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Hello, Sarah! 👋', style: TextStyle(fontSize: 25, color: Colors.black),),
-                      Text('Track your expenses wisely', style: TextStyle(fontSize: 14,color: Colors.black54),)
+                      Text(
+                        'Hello, Sarah! 👋',
+                        style: TextStyle(fontSize: 25, color: Colors.black),
+                      ),
+                      Text(
+                        'Track your expenses wisely',
+                        style: TextStyle(fontSize: 14, color: Colors.black54),
+                      ),
                     ],
                   ),
-                  Addbutton(onTap: (){})
+                  AddButton(onTap: () {}),
                 ],
-              )
+              ),
+              SizedBox(height: 15),
+              BalanceCard(),
             ],
           ),
         ),
@@ -38,3 +47,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
