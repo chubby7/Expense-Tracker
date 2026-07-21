@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F7F8),
+      backgroundColor: Color(0xFFEEF2F8),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         'Track your expenses wisely',
-                        style: TextStyle(fontSize: 14, color: Colors.black54),
+                        style: TextStyle(fontSize: 14, color: Colors.black),
                       ),
                     ],
                   ),
@@ -40,6 +40,40 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 15),
               BalanceCard(),
+              SizedBox(height: 15),
+              Container(
+                height: 300,
+                width: 400,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Color(0xFFFFFFFF),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Spending by category', style: TextStyle(fontSize: 15),),
+                       Container(
+                         padding: EdgeInsets.symmetric(
+                           horizontal: 16,
+                             vertical: 6),
+                         decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.0),
+                           color: Color(0xFFECEEF2),
+                         ),
+                         child: Center(
+                           child: Text('January, 2025', style:  TextStyle(fontSize: 14, color: Colors.black),),
+                         ),
+                       ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
