@@ -1,6 +1,7 @@
 import 'package:expense_tracker/components/addButton.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/components/balanceCard.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,6 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Color(0xFFFFFFFF),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                        offset: Offset(0, 4),
+                      )
+                    ],
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(20.0),
@@ -69,7 +78,41 @@ class _HomeScreenState extends State<HomeScreen> {
                          ),
                        ),
                         ],
-                      )
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            height: 120,
+                            child: PieChart(PieChartData(
+                              centerSpaceRadius: 35,
+                              sectionsSpace: 2,
+                              sections: [
+                                PieChartSectionData(
+                                  value: 40,
+                                  color: Colors.red,
+                                  radius: 25,
+                                ),
+                                PieChartSectionData(
+                                  value: 25,
+                                  color: Colors.blue,
+                                  radius: 25,
+                                ),
+                                PieChartSectionData(
+                                  value: 20,
+                                  color: Colors.green,
+                                  radius: 25,
+                                ),
+                                PieChartSectionData(
+                                  value: 15,
+                                  color: Colors.orange,
+                                  radius: 25,
+                                ),
+                              ],
+                            )),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
