@@ -2,6 +2,7 @@ import 'package:expense_tracker/components/addButton.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/components/balanceCard.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:expense_tracker/constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -79,11 +80,14 @@ class _HomeScreenState extends State<HomeScreen> {
                        ),
                         ],
                       ),
+                      SizedBox(height: 15,),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 120,
-                            height: 120,
+                            width: 150,
+                            height: 150,
                             child: PieChart(PieChartData(
                               centerSpaceRadius: 35,
                               sectionsSpace: 2,
@@ -110,6 +114,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ],
                             )),
+                          ),
+                          Column(
+                            children: [
+                              SizedBox(
+                                width: 150,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 10,
+                                      height: 10,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8,),
+                                    Text('Food', style: kSmallTextDark,),
+                                   const Spacer(),
+                                    Column(
+                                      children: [
+                                        Text('\$1150', style: kSmallTextDark,),
+                                        Text('40%', style: kSmallerTextDark,),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
