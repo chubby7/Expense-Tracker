@@ -32,7 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           'Hello, Sarah! 👋',
-                          style: kNormalTextStyle.copyWith(fontSize: 25, fontWeight: FontWeight.w500),
+                          style: kNormalTextStyle.copyWith(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Text(
                           'Track your expenses wisely',
@@ -58,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         blurRadius: 10,
                         spreadRadius: 2,
                         offset: Offset(0, 4),
-                      )
+                      ),
                     ],
                   ),
                   child: Padding(
@@ -68,22 +71,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Spending by category', style: kNormalTextStyle.copyWith(fontSize: 16)),
-                         Container(
-                           padding: EdgeInsets.symmetric(
-                             horizontal: 16,
-                               vertical: 6),
-                           decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(10.0),
-                             color: Color(0xFFECEEF2),
-                           ),
-                           child: Center(
-                             child: Text('January, 2025', style:  kNormalTextStyle.copyWith(fontSize: 14)),
-                           ),
-                         ),
+                            Text(
+                              'Spending by category',
+                              style: kNormalTextStyle.copyWith(fontSize: 16),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFECEEF2),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'January, 2025',
+                                  style: kNormalTextStyle.copyWith(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                        SizedBox(height: 15,),
+                        SizedBox(height: 15),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,32 +103,34 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               width: 150,
                               height: 150,
-                              child: PieChart(PieChartData(
-                                centerSpaceRadius: 35,
-                                sectionsSpace: 2,
-                                sections: [
-                                  PieChartSectionData(
-                                    value: 40,
-                                    color: Colors.red,
-                                    radius: 25,
-                                  ),
-                                  PieChartSectionData(
-                                    value: 25,
-                                    color: Colors.blue,
-                                    radius: 25,
-                                  ),
-                                  PieChartSectionData(
-                                    value: 20,
-                                    color: Colors.green,
-                                    radius: 25,
-                                  ),
-                                  PieChartSectionData(
-                                    value: 15,
-                                    color: Colors.orange,
-                                    radius: 25,
-                                  ),
-                                ],
-                              )),
+                              child: PieChart(
+                                PieChartData(
+                                  centerSpaceRadius: 35,
+                                  sectionsSpace: 2,
+                                  sections: [
+                                    PieChartSectionData(
+                                      value: 40,
+                                      color: Colors.red,
+                                      radius: 25,
+                                    ),
+                                    PieChartSectionData(
+                                      value: 25,
+                                      color: Colors.blue,
+                                      radius: 25,
+                                    ),
+                                    PieChartSectionData(
+                                      value: 20,
+                                      color: Colors.green,
+                                      radius: 25,
+                                    ),
+                                    PieChartSectionData(
+                                      value: 15,
+                                      color: Colors.orange,
+                                      radius: 25,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                             Column(
                               children: [
@@ -124,11 +138,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 150,
                                   child: Expenses(
                                     colour: Colors.red,
-                                  item: 'Food',
+                                    item: 'Food',
                                     percent: '40%',
                                     price: '\$1150',
                                   ),
-          
                                 ),
                                 SizedBox(
                                   width: 150,
@@ -138,7 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     percent: '24%',
                                     price: '\$680',
                                   ),
-          
                                 ),
                                 SizedBox(
                                   width: 150,
@@ -148,7 +160,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     percent: '18%',
                                     price: '\$550',
                                   ),
-          
                                 ),
                                 SizedBox(
                                   width: 150,
@@ -158,7 +169,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     percent: '12%',
                                     price: '\$350',
                                   ),
-          
                                 ),
                                 SizedBox(
                                   width: 150,
@@ -168,7 +178,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     percent: '6%',
                                     price: '\$147',
                                   ),
-          
                                 ),
                               ],
                             ),
@@ -202,8 +211,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Recent Transactions', style: kNormalTextStyle,),
-                              TextButton(onPressed: (){}, child: Text('View All', style: kNormalTextStyle.copyWith(fontSize: 15, color: Color(0xFF6B72F7)),))
+                              Text(
+                                'Recent Transactions',
+                                style: kNormalTextStyle,
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'View All',
+                                  style: kNormalTextStyle.copyWith(
+                                    fontSize: 15,
+                                    color: Color(0xFF6B72F7),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           TransactionList(
@@ -246,16 +267,115 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                SizedBox(height: 15),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color(0xFFFFFFFF),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.1),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Column(
+                            children: [
+                              CircleAvatar(backgroundColor: Color(0xFFDBFCE7), child: Icon(Icons.trending_up, color: Colors.green,)),
+                              SizedBox(height: 10),
+                              Text(
+                                'VS last Month',
+                                style: kNormalTextStyle.copyWith(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w100,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '+ 8.5%',
+                                style: kNormalTextStyle.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 15),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color(0xFFFFFFFF),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.1),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Color(0xFFDBEAFE),
+                                child: Icon(
+                                  Icons.calendar_month,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'Days Left',
+                                style: kNormalTextStyle.copyWith(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w100,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '9 Days',
+                                style: kNormalTextStyle.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
         ),
+     //   screens{index}
       ),
+      bottomNavigationBar:
+      NavigationBar(
+          destinations: const [ NavigationDestination(
+              icon: Icon(Icons.home_outlined),
+              selectedIcon: Icon(Icons.home),
+              label: 'home'),
+          NavigationDestination(icon: Icon(Icons.add), label: 'add'),
+          NavigationDestination(icon: Icon(Icons.bar_chart), label: 'Analytics'),
+            NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
+NavigationDestination(icon: Icon(Icons.settings), label: 'settings')
+          ]),
     );
   }
 }
-
-
-
-
-
