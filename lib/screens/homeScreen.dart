@@ -1,10 +1,12 @@
 import 'package:expense_tracker/components/addButton.dart';
+import 'package:expense_tracker/screens/addScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/components/balanceCard.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/components/expenses.dart';
 import 'package:expense_tracker/components/transactionList.dart';
+import 'package:expense_tracker/components/addCard.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hello, Sarah! 👋',
+                          'Hello, Sarah! 👋',overflow: TextOverflow.ellipsis,
                           style: kNormalTextStyle.copyWith(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
@@ -43,27 +45,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    AddButton(onTap: () {}),
+                    AddButton(onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => addScreen()));
+                    }),
                   ],
                 ),
                 SizedBox(height: 15),
                 BalanceCard(),
                 SizedBox(height: 15),
-                Container(
+                addCard(
                   height: 300,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFFFFFFF),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
                   child: Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Column(
@@ -97,89 +87,77 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(height: 15),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
-                              width: 150,
-                              height: 150,
-                              child: PieChart(
-                                PieChartData(
-                                  centerSpaceRadius: 35,
-                                  sectionsSpace: 2,
-                                  sections: [
-                                    PieChartSectionData(
-                                      value: 40,
-                                      color: Colors.red,
-                                      radius: 25,
-                                    ),
-                                    PieChartSectionData(
-                                      value: 25,
-                                      color: Colors.blue,
-                                      radius: 25,
-                                    ),
-                                    PieChartSectionData(
-                                      value: 20,
-                                      color: Colors.green,
-                                      radius: 25,
-                                    ),
-                                    PieChartSectionData(
-                                      value: 15,
-                                      color: Colors.orange,
-                                      radius: 25,
-                                    ),
-                                  ],
+                            Expanded(
+                              child: AspectRatio(
+                                aspectRatio: 1,
+                                child: PieChart(
+                                  PieChartData(
+                                    centerSpaceRadius: 35,
+                                    sectionsSpace: 2,
+                                    sections: [
+                                      PieChartSectionData(
+                                        value: 40,
+                                        color: Colors.red,
+                                        radius: 25,
+                                      ),
+                                      PieChartSectionData(
+                                        value: 25,
+                                        color: Colors.blue,
+                                        radius: 25,
+                                      ),
+                                      PieChartSectionData(
+                                        value: 20,
+                                        color: Colors.green,
+                                        radius: 25,
+                                      ),
+                                      PieChartSectionData(
+                                        value: 15,
+                                        color: Colors.orange,
+                                        radius: 25,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                            Column(
-                              children: [
-                                SizedBox(
-                                  width: 150,
-                                  child: Expenses(
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Expenses(
                                     colour: Colors.red,
                                     item: 'Food',
                                     percent: '40%',
                                     price: '\$1150',
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 150,
-                                  child: Expenses(
+                                  Expenses(
                                     colour: Colors.blue,
                                     item: 'Transport',
                                     percent: '24%',
                                     price: '\$680',
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 150,
-                                  child: Expenses(
+                                  Expenses(
                                     colour: Colors.green,
                                     item: 'bill',
                                     percent: '18%',
                                     price: '\$550',
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 150,
-                                  child: Expenses(
+                                  Expenses(
                                     colour: Colors.yellow,
                                     item: 'shopping',
                                     percent: '12%',
                                     price: '\$350',
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 150,
-                                  child: Expenses(
+                                  Expenses(
                                     colour: Colors.grey,
                                     item: 'others',
                                     percent: '6%',
                                     price: '\$147',
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -188,21 +166,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(height: 15),
-                Container(
+                addCard(
                   height: 300,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFFFFFFF),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
@@ -271,19 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Color(0xFFFFFFFF),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.1),
-                              blurRadius: 10,
-                              spreadRadius: 2,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
+                      child: addCard(
                         child: Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(
@@ -312,19 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(width: 15),
                     Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Color(0xFFFFFFFF),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.1),
-                              blurRadius: 10,
-                              spreadRadius: 2,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
+                      child: addCard(
                         child: Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(
@@ -371,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.home_outlined),
               selectedIcon: Icon(Icons.home),
               label: 'home'),
-          NavigationDestination(icon: Icon(Icons.add), label: 'add'),
+          NavigationDestination(icon: Icon(Icons.add), label: 'Expenses'),
           NavigationDestination(icon: Icon(Icons.bar_chart), label: 'Analytics'),
             NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
 NavigationDestination(icon: Icon(Icons.settings), label: 'settings')
@@ -379,3 +320,4 @@ NavigationDestination(icon: Icon(Icons.settings), label: 'settings')
     );
   }
 }
+

@@ -9,7 +9,6 @@ class BalanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
       height: 250,
       decoration: BoxDecoration(
         gradient: LinearGradient(
