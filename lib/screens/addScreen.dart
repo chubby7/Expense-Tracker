@@ -15,17 +15,50 @@ class _addScreenState extends State<addScreen> {
     return Scaffold(
       backgroundColor: Color(0xFFEEF2F8),
       appBar: AppBar(
-        title: Text('Add Money', style: kNormalTextStyle,),
+        title: Text(
+          'Add Money',
+          style: kNormalTextStyle.copyWith(fontSize: 17),
+        ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: addCard(
-              height: 300,
-              child: Column(
-            children: [
-              TextField()
-            ],
-          )))
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 20, bottom: 5),
+            child: Text(
+              'Enter or select amount',
+              style: kNormalTextStyle.copyWith(fontSize: 16),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: addCard(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter your budget for the month',
+                          hintStyle: kNormalTextStyle.copyWith(
+                            color: Colors.grey,
+                            fontSize: 14,
+                          ),
+                          prefixText: '₦  ',
+                          prefixStyle: kNormalTextStyle.copyWith(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

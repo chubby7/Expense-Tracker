@@ -33,7 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hello, Sarah! 👋',overflow: TextOverflow.ellipsis,
+                          'Hello, Sarah! 👋',
+                          overflow: TextOverflow.ellipsis,
                           style: kNormalTextStyle.copyWith(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
@@ -45,8 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    AddButton(onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => addScreen()));
-                    }),
+                    AddButton(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => addScreen()),
+                        );
+                      },
+                    ),
                   ],
                 ),
                 SizedBox(height: 15),
@@ -241,7 +248,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.all(20),
                           child: Column(
                             children: [
-                              CircleAvatar(backgroundColor: Color(0xFFDBFCE7), child: Icon(Icons.trending_up, color: Colors.green,)),
+                              CircleAvatar(
+                                backgroundColor: Color(0xFFDBFCE7),
+                                child: Icon(
+                                  Icons.trending_up,
+                                  color: Colors.green,
+                                ),
+                              ),
                               SizedBox(height: 10),
                               Text(
                                 'VS last Month',
@@ -255,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 '+ 8.5%',
                                 style: kNormalTextStyle.copyWith(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.green
+                                  color: Colors.green,
                                 ),
                               ),
                             ],
@@ -304,20 +317,24 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-     //   screens{index}
+        //   screens{index}
       ),
-      bottomNavigationBar:
-      NavigationBar(
-          destinations: const [ NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home),
-              label: 'home'),
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'home',
+          ),
           NavigationDestination(icon: Icon(Icons.add), label: 'Expenses'),
-          NavigationDestination(icon: Icon(Icons.bar_chart), label: 'Analytics'),
-            NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
-NavigationDestination(icon: Icon(Icons.settings), label: 'settings')
-          ]),
+          NavigationDestination(
+            icon: Icon(Icons.bar_chart),
+            label: 'Analytics',
+          ),
+          NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
+          NavigationDestination(icon: Icon(Icons.settings), label: 'settings'),
+        ],
+      ),
     );
   }
 }
-
