@@ -10,6 +10,14 @@ class addScreen extends StatefulWidget {
 }
 
 class _addScreenState extends State<addScreen> {
+  final TextEditingController amountController = TextEditingController();
+
+  @override
+  void dispose() {
+    amountController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +47,13 @@ class _addScreenState extends State<addScreen> {
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: TextField(
+                        controller: amountController,
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          setState(() {
+
+                          });
+                        },
                         decoration: InputDecoration(
                           hintText: 'Enter your budget for the month',
                           hintStyle: kNormalTextStyle.copyWith(
@@ -51,6 +66,25 @@ class _addScreenState extends State<addScreen> {
                             fontSize: 17,
                             fontWeight: FontWeight.bold
                           ),
+
+                          suffixIconConstraints: BoxConstraints(
+                            minHeight: 0,
+                            minWidth: 0,
+                            maxHeight: 38,
+                            maxWidth: 100,
+                          ),
+                          suffixIcon: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.deepPurple,
+                              foregroundColor: Colors.white,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                              onPressed: () {},
+                              child: Text('Fund',
+                              )),
                         ),
                       ),
                     ),
