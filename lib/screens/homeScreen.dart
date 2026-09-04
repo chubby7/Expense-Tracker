@@ -16,6 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  int balance = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,17 +50,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     AddButton(
-                      onTap: () {
-                        Navigator.push(
+                      onTap: () async{
+                        final int? amount = await
+                        Navigator.push<int>(
                           context,
                           MaterialPageRoute(builder: (context) => addScreen()),
                         );
+                        if (amount != null) {
+                          setState(() {
+                            balance += amount;
+                          });
+                        }
                       },
                     ),
                   ],
                 ),
                 SizedBox(height: 15),
-                BalanceCard(),
+                BalanceCard(
+                  balance:'₦ $balance',
+                ),
                 SizedBox(height: 15),
                 addCard(
                   height: 300,

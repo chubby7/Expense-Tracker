@@ -20,6 +20,8 @@ class _addScreenState extends State<addScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool hasAmount = amountController.text.isNotEmpty;
+
     return Scaffold(
       backgroundColor: Color(0xFFEEF2F8),
       appBar: AppBar(
@@ -50,9 +52,7 @@ class _addScreenState extends State<addScreen> {
                         controller: amountController,
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          setState(() {
-
-                          });
+                          setState(() {});
                         },
                         decoration: InputDecoration(
                           hintText: 'Enter your budget for the month',
@@ -64,28 +64,94 @@ class _addScreenState extends State<addScreen> {
                           prefixStyle: kNormalTextStyle.copyWith(
                             color: Colors.black,
                             fontSize: 17,
-                            fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.bold,
                           ),
-
-                          suffixIconConstraints: BoxConstraints(
-                            minHeight: 0,
-                            minWidth: 0,
-                            maxHeight: 38,
-                            maxWidth: 100,
-                          ),
-                          suffixIcon: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple,
-                              foregroundColor: Colors.white,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                          suffixIcon: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (hasAmount)
+                             IconButton(
+                                onPressed: () {
+                                  amountController.clear();
+                                  setState(() {});
+                                },
+                                icon: Icon(Icons.close, size: 20),
                               ),
-                            ),
-                              onPressed: () {},
-                              child: Text('Fund',
-                              )),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: hasAmount
+                                  ? Colors.deepPurple
+                                  : Colors.deepPurple.withValues(alpha: 0.1),
+                                  foregroundColor: Colors.white,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                onPressed: hasAmount ? () {
+                                  Navigator.pop(context,
+                                      int.parse(amountController.text),);
+                                } : null,
+                                child: Text('Fund'),
+                              ),
+                            ],
+                          ),
                         ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: GridView.count(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                        childAspectRatio: 2.2,
+                        children: [
+                          AmountButton(
+                            onPress: () {
+                              amountController.text = '1000';
+                              setState(() {});
+                            },
+                            amount: '1000',
+                          ),
+                          AmountButton(
+                            onPress: () {
+                              amountController.text = '2000';
+                              setState(() {});
+                            },
+                            amount: '2000',
+                          ),
+                          AmountButton(
+                            onPress: () {
+                              amountController.text = '5000';
+                              setState(() {});
+                            },
+                            amount: '5000',
+                          ),
+                          AmountButton(
+                            onPress: () {
+                              amountController.text = '10000';
+                              setState(() {});
+                            },
+                            amount: '10000',
+                          ),
+                          AmountButton(
+                            onPress: () {
+                              amountController.text = '20000';
+                              setState(() {});
+                            },
+                            amount: '20000',
+                          ),
+                          AmountButton(
+                            onPress: () {
+                              amountController.text = '50000';
+                              setState(() {});
+                            },
+                            amount: '50000',
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -94,6 +160,26 @@ class _addScreenState extends State<addScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AmountButton extends StatelessWidget {
+  final VoidCallback onPress;
+  final String amount;
+  const AmountButton({required this.onPress, required this.amount});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(child: Text(amount)),
       ),
     );
   }

@@ -3,9 +3,9 @@ import 'package:expense_tracker/constants.dart';
 
 class BalanceCard extends StatelessWidget {
   const BalanceCard({
-    super.key,
+    super.key, required this.balance
   });
-
+  final String balance;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +28,7 @@ class BalanceCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$2847",
+                  balance,
                   style: TextStyle(
                     color: Color(0xFFFFFFFF),
                     fontSize: 40,
