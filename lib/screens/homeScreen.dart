@@ -328,23 +328,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        //   screens{index}
-      ),
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'home',
-          ),
-          NavigationDestination(icon: Icon(Icons.add), label: 'Expenses'),
-          NavigationDestination(
-            icon: Icon(Icons.bar_chart),
-            label: 'Analytics',
-          ),
-          NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
-          NavigationDestination(icon: Icon(Icons.settings), label: 'settings'),
-        ],
       ),
     );
   }
