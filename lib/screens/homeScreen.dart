@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEEF2F8),
+      backgroundColor: Color(0xFFF9FAFB),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   balance:'₦ $balance',
                 ),
                 SizedBox(height: 15),
-                addCard(
+                AddCard(
                   height: 300,
                   child: Padding(
                     padding: EdgeInsets.all(20.0),
@@ -184,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(height: 15),
-                addCard(
+                AddCard(
                   height: 300,
                   child: SingleChildScrollView(
                     child: Padding(
@@ -254,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     Expanded(
-                      child: addCard(
+                      child: AddCard(
                         child: Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(
@@ -289,7 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(width: 15),
                     Expanded(
-                      child: addCard(
+                      child: AddCard(
                         child: Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(

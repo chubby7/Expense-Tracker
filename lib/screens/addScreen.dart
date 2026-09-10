@@ -43,7 +43,7 @@ class _addScreenState extends State<addScreen> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: addCard(
+              child: AddCard(
                 child: Column(
                   children: [
                     Padding(
