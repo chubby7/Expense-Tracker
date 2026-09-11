@@ -19,6 +19,7 @@ class _ExpenseState extends State<Expense> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
+          //  mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Row(
                 children: [
@@ -43,8 +44,6 @@ class _ExpenseState extends State<Expense> {
                 ),
                 child: AddCard(
                   height: 300,
-                  //  width: double.infinity,
-                  // dashedBorder: true,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Color(0xFFEEF2FF),
@@ -52,10 +51,21 @@ class _ExpenseState extends State<Expense> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.camera_alt),
+                        AddCard(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color(0xFFE0E7FF),
+                          ),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.photo_camera,
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                          ),
                         ),
                         Text(
                           'Scan Receipt',
@@ -64,24 +74,82 @@ class _ExpenseState extends State<Expense> {
                             fontSize: 17,
                           ),
                         ),
-                        Text('Use AI to automatically extract expense details', ),
-                        ElevatedButton(onPressed: (){},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.blue,
-                              minimumSize: Size(20, 50)
+
+                        Text('Use AI to automatically extract expense details'),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.blue,
+                            side: BorderSide(color: Colors.blue, width: 1.5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.camera_alt),
-                                  Text('Scan Receipt')
-                                ],
-                              ),
-                            ))
+                            minimumSize: Size(20, 50),
+                            elevation: 0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.camera_alt),
+                              SizedBox(width: 8),
+                              Text('Scan Receipt'),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
+                  ),
+                ),
+              ),
+
+              AddCard(
+                height: 150,
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Amount*',
+                        style: kNormalTextStyle.copyWith(fontSize: 20),
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text('₦', style: kNormalTextStyle.copyWith(
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),),
+                          ),
+                          hintText: '0.00',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.blue,
+                              width: 1.5,
+                            )
+                          ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                color: Colors.blue,
+                                width: 1.5
+                              )
+                            ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.blue,
+                              width: 1.5
+                            ),
+                          )
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),

@@ -22,7 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF9FAFB),
+      backgroundColor: Color(0xFFF9FAFB
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
