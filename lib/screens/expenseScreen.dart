@@ -166,7 +166,7 @@ class _ExpenseState extends State<Expense> {
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -198,46 +198,104 @@ class _ExpenseState extends State<Expense> {
                               width: 1.5,
                             ),
                           ),
-                            height: 150,
-                              child: Padding(padding: EdgeInsets.all(10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        padding: EdgeInsets.all(6),
-                                          decoration: BoxDecoration(
-                                            color: Colors.blue.shade50,
-                                            borderRadius: BorderRadius.circular(6),
-                                          ),
-                                          child: Icon(Icons.auto_awesome, color: Colors.blue,)),
-                                      SizedBox(width: 10,),
-                                      Text('AI Suggestion', style: kNormalTextStyle.copyWith(color: Colors.blue, fontWeight: FontWeight.bold),),
-                                    ],
+                          height: 150,
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue.shade50,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Icon(
+                                        Icons.auto_awesome,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      'AI Suggestion',
+                                      style: kNormalTextStyle.copyWith(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  'This looks like a Food and dinning expense',
+                                  style: kNormalTextStyle.copyWith(
+                                    color: Colors.blue,
                                   ),
-                                  Text('This looks like a Food and dinning expense', style: kNormalTextStyle.copyWith(color: Colors.blue),),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: ElevatedButton(onPressed: (){},
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.blue,
-                                          foregroundColor: Colors.white,
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
-                                          ),
-
-                                        ),
-                                        child: Text('⚡ Apply Suggestion', style: kNormalTextStyle.copyWith(color: Colors.white),)),
-                                  )
-                                ],
-                              ),),),
+                                ),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blue,
+                                      foregroundColor: Colors.white,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      '⚡ Apply Suggestion',
+                                      style: kNormalTextStyle.copyWith(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
+                SizedBox(height: 15,),
+                AddCard(child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Category*', style: kNormalTextStyle.copyWith(fontSize: 20),),
+                      GridView.count(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        crossAxisCount: 2,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
+                      childAspectRatio: 2.2,
+                      children: [
+                        ElevatedButton(onPressed: (){},
+                            child: Row(
+                              children: [
+                                Icon(Icons.restaurant,),
+                                Text('Food'),
+                              ],
+                            )),
+                        ElevatedButton(onPressed: (){},
+                            child: Row(
+                              children: [
+                                Icon(Icons.directions_car),
+                                Text('Transportation'),
+                              ],
+                            )),
+                      ],)
+                    ],
+                  ),
+                ),),
               ],
             ),
           ),
