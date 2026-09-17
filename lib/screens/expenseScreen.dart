@@ -2,6 +2,7 @@ import 'package:expense_tracker/components/addCard.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Expense extends StatefulWidget {
   const Expense({super.key});
@@ -11,6 +12,7 @@ class Expense extends StatefulWidget {
 }
 
 class _ExpenseState extends State<Expense> {
+  String? selectedCategory;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -270,6 +272,7 @@ class _ExpenseState extends State<Expense> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Category*', style: kNormalTextStyle.copyWith(fontSize: 20),),
+                     SizedBox(height: 15),
                       GridView.count(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
@@ -278,20 +281,67 @@ class _ExpenseState extends State<Expense> {
                       mainAxisSpacing: 15,
                       childAspectRatio: 2.2,
                       children: [
-                        ElevatedButton(onPressed: (){},
-                            child: Row(
-                              children: [
-                                Icon(Icons.restaurant,),
-                                Text('Food'),
-                              ],
-                            )),
-                        ElevatedButton(onPressed: (){},
-                            child: Row(
-                              children: [
-                                Icon(Icons.directions_car),
-                                Text('Transportation'),
-                              ],
-                            )),
+                        CategoryButton(
+                          isSelected: selectedCategory == 'Food',
+                          onTap: (){
+                            setState(() {
+                              selectedCategory = 'Food';
+                            });
+                          },
+                          icon: FontAwesomeIcons.utensils,
+                          name: 'Food',
+                        ),
+                        CategoryButton(
+                          isSelected: selectedCategory == 'Transportation',
+                          onTap: (){
+                            setState(() {
+                              selectedCategory = 'Transportation';
+                            });
+                          },
+                          icon: FontAwesomeIcons.car,
+                          name: 'Transportation',
+                        ),
+                        CategoryButton(
+                          isSelected: selectedCategory == 'Bills',
+                          onTap: (){
+                            setState(() {
+                              selectedCategory = 'Bills';
+                            });
+                          },
+                          icon: FontAwesomeIcons.bolt,
+                          name: 'Bills & Utilities',
+                        ),
+                        CategoryButton(
+                          isSelected: selectedCategory == 'Shopping',
+                          onTap: (){
+                            setState(() {
+                              selectedCategory = 'Shopping';
+                            });
+                          },
+                          icon: FontAwesomeIcons.bagShopping,
+                          name: 'Shopping',
+                        ),
+                        CategoryButton(
+                          isSelected: selectedCategory == 'HealthCare',
+                          onTap: (){
+                            setState(() {
+                              selectedCategory = 'HealthCare';
+                            });
+                          },
+                          icon: FontAwesomeIcons.suitcaseMedical,
+                          name: 'HealthCare',
+                        ),
+                        CategoryButton(
+                          isSelected: selectedCategory == 'Entertainment',
+                          onTap: (){
+                            setState(() {
+                              selectedCategory = 'Entertainment';
+                            });
+                          },
+                          icon: FontAwesomeIcons.film,
+                          name: 'Entertainment',
+                        ),
+
                       ],)
                     ],
                   ),
@@ -302,5 +352,45 @@ class _ExpenseState extends State<Expense> {
         ),
       ),
     );
+  }
+}
+
+class CategoryButton extends StatelessWidget {
+  final VoidCallback onTap;
+  final String name;
+  final FaIconData icon;
+  final bool isSelected;
+
+  const CategoryButton({
+    super.key, required this.onTap, required this. icon, required this.name, required this.isSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: isSelected
+          ? Colors.blue.shade50
+          : Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(
+            color: isSelected
+            ? Colors.blue
+            : Colors.grey.shade300,
+            width: 1.5,
+          )
+        )
+      ),
+        onPressed: onTap,
+        child: Row(
+          children: [
+            FaIcon(icon, color: isSelected ? Colors.blue : Colors.grey,),
+            Text(name, style: TextStyle(
+              color: isSelected ? Colors.blue : Colors.grey
+            ),),
+          ],
+        ));
   }
 }
