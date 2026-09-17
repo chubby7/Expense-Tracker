@@ -387,9 +387,12 @@ class CategoryButton extends StatelessWidget {
         child: Row(
           children: [
             FaIcon(icon, color: isSelected ? Colors.blue : Colors.grey,),
-            Text(name, style: TextStyle(
-              color: isSelected ? Colors.blue : Colors.grey
-            ),),
+            SizedBox(width: 10,),
+            Expanded(
+              child: Text(name,maxLines: 2, style: TextStyle(
+                color: isSelected ? Colors.blue : Colors.grey
+              ),),
+            ),
           ],
         ));
   }
