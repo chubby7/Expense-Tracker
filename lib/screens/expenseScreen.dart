@@ -12,6 +12,7 @@ class Expense extends StatefulWidget {
 }
 
 class _ExpenseState extends State<Expense> {
+  final TextEditingController dateController = TextEditingController();
   String? selectedCategory;
   @override
   Widget build(BuildContext context) {
@@ -264,88 +265,203 @@ class _ExpenseState extends State<Expense> {
                     ),
                   ),
                 ),
-                SizedBox(height: 15,),
-                AddCard(child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Category*', style: kNormalTextStyle.copyWith(fontSize: 20),),
-                     SizedBox(height: 15),
-                      GridView.count(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        crossAxisCount: 2,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                      childAspectRatio: 2.2,
+                SizedBox(height: 15),
+                AddCard(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CategoryButton(
-                          isSelected: selectedCategory == 'Food',
-                          onTap: (){
-                            setState(() {
-                              selectedCategory = 'Food';
-                            });
-                          },
-                          icon: FontAwesomeIcons.utensils,
-                          name: 'Food',
+                        Text(
+                          'Category*',
+                          style: kNormalTextStyle.copyWith(fontSize: 20),
                         ),
-                        CategoryButton(
-                          isSelected: selectedCategory == 'Transportation',
-                          onTap: (){
-                            setState(() {
-                              selectedCategory = 'Transportation';
-                            });
-                          },
-                          icon: FontAwesomeIcons.car,
-                          name: 'Transportation',
+                        SizedBox(height: 15),
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: 2.2,
+                          children: [
+                            CategoryButton(
+                              isSelected: selectedCategory == 'Food',
+                              onTap: () {
+                                setState(() {
+                                  selectedCategory = 'Food';
+                                });
+                              },
+                              icon: FontAwesomeIcons.utensils,
+                              name: 'Food',
+                            ),
+                            CategoryButton(
+                              isSelected: selectedCategory == 'Transportation',
+                              onTap: () {
+                                setState(() {
+                                  selectedCategory = 'Transportation';
+                                });
+                              },
+                              icon: FontAwesomeIcons.car,
+                              name: 'Transportation',
+                            ),
+                            CategoryButton(
+                              isSelected: selectedCategory == 'Bills',
+                              onTap: () {
+                                setState(() {
+                                  selectedCategory = 'Bills';
+                                });
+                              },
+                              icon: FontAwesomeIcons.bolt,
+                              name: 'Bills & Utilities',
+                            ),
+                            CategoryButton(
+                              isSelected: selectedCategory == 'Shopping',
+                              onTap: () {
+                                setState(() {
+                                  selectedCategory = 'Shopping';
+                                });
+                              },
+                              icon: FontAwesomeIcons.bagShopping,
+                              name: 'Shopping',
+                            ),
+                            CategoryButton(
+                              isSelected: selectedCategory == 'HealthCare',
+                              onTap: () {
+                                setState(() {
+                                  selectedCategory = 'HealthCare';
+                                });
+                              },
+                              icon: FontAwesomeIcons.suitcaseMedical,
+                              name: 'HealthCare',
+                            ),
+                            CategoryButton(
+                              isSelected: selectedCategory == 'Entertainment',
+                              onTap: () {
+                                setState(() {
+                                  selectedCategory = 'Entertainment';
+                                });
+                              },
+                              icon: FontAwesomeIcons.film,
+                              name: 'Entertainment',
+                            ),
+                          ],
                         ),
-                        CategoryButton(
-                          isSelected: selectedCategory == 'Bills',
-                          onTap: (){
-                            setState(() {
-                              selectedCategory = 'Bills';
-                            });
-                          },
-                          icon: FontAwesomeIcons.bolt,
-                          name: 'Bills & Utilities',
-                        ),
-                        CategoryButton(
-                          isSelected: selectedCategory == 'Shopping',
-                          onTap: (){
-                            setState(() {
-                              selectedCategory = 'Shopping';
-                            });
-                          },
-                          icon: FontAwesomeIcons.bagShopping,
-                          name: 'Shopping',
-                        ),
-                        CategoryButton(
-                          isSelected: selectedCategory == 'HealthCare',
-                          onTap: (){
-                            setState(() {
-                              selectedCategory = 'HealthCare';
-                            });
-                          },
-                          icon: FontAwesomeIcons.suitcaseMedical,
-                          name: 'HealthCare',
-                        ),
-                        CategoryButton(
-                          isSelected: selectedCategory == 'Entertainment',
-                          onTap: (){
-                            setState(() {
-                              selectedCategory = 'Entertainment';
-                            });
-                          },
-                          icon: FontAwesomeIcons.film,
-                          name: 'Entertainment',
-                        ),
-
-                      ],)
-                    ],
+                      ],
+                    ),
                   ),
-                ),),
+                ),
+                SizedBox(height: 15),
+                Row(
+                  children: [
+                    Expanded(
+                      child: AddCard(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Date', style: kNormalTextStyle),
+                              SizedBox(height: 15),
+                              TextField(
+                                readOnly: true,
+                                controller: dateController,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xFFF9FAFB),
+                                  labelText: 'Date',
+                                  suffixIcon: Icon(Icons.calendar_month),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                                onTap: () async {
+                                  final DateTime? pickedDate =
+                                      await showDatePicker(
+                                        context: context,
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2100),
+                                        initialDate: DateTime.now(),
+                                      );
+                                  if (pickedDate != null) {
+                                    dateController.text =
+                                        '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: AddCard(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Payment', style: kNormalTextStyle),
+                              SizedBox(height: 15),
+                              TextField(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xFFF9FAFB),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                AddCard(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Notes (Optional)', style: kNormalTextStyle.copyWith(color: Colors.black)),
+                        SizedBox(height: 15),
+                        TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                              fillColor: Color(0xFFF9FAFB),
+                            contentPadding: EdgeInsets.only(bottom: 60),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -362,7 +478,11 @@ class CategoryButton extends StatelessWidget {
   final bool isSelected;
 
   const CategoryButton({
-    super.key, required this.onTap, required this. icon, required this.name, required this.isSelected,
+    super.key,
+    required this.onTap,
+    required this.icon,
+    required this.name,
+    required this.isSelected,
   });
 
   @override
@@ -370,30 +490,29 @@ class CategoryButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        backgroundColor: isSelected
-          ? Colors.blue.shade50
-          : Colors.transparent,
+        backgroundColor: isSelected ? Colors.blue.shade50 : Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
           side: BorderSide(
-            color: isSelected
-            ? Colors.blue
-            : Colors.grey.shade300,
+            color: isSelected ? Colors.blue : Colors.grey.shade300,
             width: 1.5,
-          )
-        )
+          ),
+        ),
       ),
-        onPressed: onTap,
-        child: Row(
-          children: [
-            FaIcon(icon, color: isSelected ? Colors.blue : Colors.grey,),
-            SizedBox(width: 10,),
-            Expanded(
-              child: Text(name,maxLines: 2, style: TextStyle(
-                color: isSelected ? Colors.blue : Colors.grey
-              ),),
+      onPressed: onTap,
+      child: Row(
+        children: [
+          FaIcon(icon, size: 20, color: isSelected ? Colors.blue : Colors.grey),
+          SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              name,
+              maxLines: 2,
+              style: TextStyle(color: isSelected ? Colors.blue : Colors.grey),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
