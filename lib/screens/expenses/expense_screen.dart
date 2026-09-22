@@ -1,4 +1,4 @@
-import 'package:expense_tracker/components/addCard.dart';
+import 'package:expense_tracker/components/add_card.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -462,6 +462,22 @@ class _ExpenseState extends State<Expense> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20,),
+                ElevatedButton(
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF4F39F6),
+                  foregroundColor: Colors.white,
+                  side: BorderSide(color: Color(0xFF4F39F6), width: 1.5),
+                  shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      minimumSize: Size(20, 60),
+                      elevation: 0,
+                ),
+                    child: Text('Add Expense', style: kNormalTextStyle.copyWith(color: Colors.white, fontSize: 20),))
               ],
             ),
           ),

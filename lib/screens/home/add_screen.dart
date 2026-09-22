@@ -1,15 +1,15 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:expense_tracker/components/addCard.dart';
+import 'package:expense_tracker/components/add_card.dart';
 
-class addScreen extends StatefulWidget {
-  const addScreen({super.key});
+class AddScreen extends StatefulWidget {
+  const AddScreen({super.key});
 
   @override
-  State<addScreen> createState() => _addScreenState();
+  State<AddScreen> createState() => _AddScreenState();
 }
 
-class _addScreenState extends State<addScreen> {
+class _AddScreenState extends State<AddScreen> {
   final TextEditingController amountController = TextEditingController();
 
   @override
@@ -168,7 +168,7 @@ class _addScreenState extends State<addScreen> {
 class AmountButton extends StatelessWidget {
   final VoidCallback onPress;
   final String amount;
-  const AmountButton({required this.onPress, required this.amount});
+  const AmountButton({super.key, required this.onPress, required this.amount});
 
   @override
   Widget build(BuildContext context) {

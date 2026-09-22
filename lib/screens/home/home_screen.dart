@@ -1,12 +1,12 @@
-import 'package:expense_tracker/components/addButton.dart';
-import 'package:expense_tracker/screens/addScreen.dart';
+import 'package:expense_tracker/components/add_button.dart';
+import 'package:expense_tracker/screens/home/add_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:expense_tracker/components/balanceCard.dart';
+import 'package:expense_tracker/components/balance_card.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/components/expenses.dart';
-import 'package:expense_tracker/components/transactionList.dart';
-import 'package:expense_tracker/components/addCard.dart';
+import 'package:expense_tracker/components/transaction_list.dart';
+import 'package:expense_tracker/components/add_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         final int? amount = await
                         Navigator.push<int>(
                           context,
-                          MaterialPageRoute(builder: (context) => addScreen()),
+                          MaterialPageRoute(builder: (context) => AddScreen()),
                         );
                         if (amount != null) {
                           setState(() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/homeScreen.dart';
-import 'screens/expenseScreen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/expenses/expense_screen.dart';
 
 void main(){
   runApp(ExpenseTracker());
