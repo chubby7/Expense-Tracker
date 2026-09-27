@@ -9,7 +9,9 @@ import 'package:expense_tracker/components/transaction_list.dart';
 import 'package:expense_tracker/components/add_card.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final ValueChanged<int> onAmountAdded;
+  final double balance;
+  const HomeScreen({super.key, required this.balance, required this.onAmountAdded});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  int balance = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           MaterialPageRoute(builder: (context) => AddScreen()),
                         );
-                        if (amount != null) {
-                          setState(() {
-                            balance += amount;
-                          });
+                        if(amount != null){
+                          widget.onAmountAdded(amount);
                         }
                       },
                     ),
@@ -68,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 15),
                 BalanceCard(
-                  balance:'₦ $balance',
+                  balance:'₦ ${widget.balance.toStringAsFixed(0)}',
                 ),
                 SizedBox(height: 15),
                 AddCard(

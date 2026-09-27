@@ -29,6 +29,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final PageController pageController = PageController();
   int currentIndex = 0;
+  double balance = 0;
 
   @override
   void dispose() {
@@ -47,7 +48,14 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         children: [
-          HomeScreen(),
+          HomeScreen(
+            balance: balance,
+            onAmountAdded: (amount){
+              setState(() {
+                balance += amount;
+              });
+            },
+          ),
           Expense(),
         ],
       ),
