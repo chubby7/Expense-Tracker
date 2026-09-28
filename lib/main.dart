@@ -29,7 +29,9 @@ class _MainScreenState extends State<MainScreen> {
 
   final PageController pageController = PageController();
   int currentIndex = 0;
-  double balance = 0;
+  double budget = 0;
+  double totalSpent = 0;
+  double get remaining => budget - totalSpent ;
 
   @override
   void dispose() {
@@ -49,14 +51,25 @@ class _MainScreenState extends State<MainScreen> {
         },
         children: [
           HomeScreen(
-            balance: balance,
+            budget: budget,
+            totalSpent: totalSpent,
+            remaining: remaining,
             onAmountAdded: (amount){
               setState(() {
-                balance += amount;
+                budget += amount;
+
               });
             },
           ),
-          Expense(),
+          Expense(onExpenseScreen: (amount){
+            setState(() {
+              totalSpent += amount;
+              currentIndex = 0;
+            });
+            pageController.animateToPage(0, duration: const
+                Duration(milliseconds: 300),
+                curve: Curves.easeInOut);
+          },),
         ],
       ),
       bottomNavigationBar: NavigationBar(

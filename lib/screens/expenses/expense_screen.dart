@@ -5,7 +5,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Expense extends StatefulWidget {
-  const Expense({super.key});
+  final ValueChanged<int> onExpenseScreen;
+  const Expense({super.key, required this.onExpenseScreen});
 
   @override
   State<Expense> createState() => _ExpenseState();
@@ -13,9 +14,18 @@ class Expense extends StatefulWidget {
 
 class _ExpenseState extends State<Expense> {
   final TextEditingController dateController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
   String? selectedCategory;
+
+  @override
+  void dispose() {
+    amountController.dispose;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bool amount = amountController.text.isNotEmpty;
     return Scaffold(
       backgroundColor: Color(0xFFF9FAFB),
       body: SafeArea(
@@ -121,6 +131,7 @@ class _ExpenseState extends State<Expense> {
                           style: kNormalTextStyle.copyWith(fontSize: 20),
                         ),
                         TextField(
+                          controller: amountController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             filled: true,
@@ -465,7 +476,11 @@ class _ExpenseState extends State<Expense> {
                 SizedBox(height: 20,),
                 ElevatedButton(
                     onPressed: (){
-                      Navigator.pop(context);
+                      final int? amount = int.tryParse(amountController.text);
+                      if(amount == null || amount <= 0){
+                        return;
+                      }
+                      widget.onExpenseScreen(amount);
                     },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF4F39F6),
