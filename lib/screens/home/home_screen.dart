@@ -12,20 +12,25 @@ class HomeScreen extends StatefulWidget {
   final double budget;
   final double totalSpent;
   final double remaining;
-  const HomeScreen({super.key,required this.totalSpent, required this.remaining, required this.budget, required this.onAmountAdded});
+  final double remainingPercentage;
+  const HomeScreen({
+    super.key,
+    required this.totalSpent,
+    required this.remainingPercentage,
+    required this.remaining,
+    required this.budget,
+    required this.onAmountAdded,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF9FAFB
-      ),
+      backgroundColor: Color(0xFFF9FAFB),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -53,13 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     AddButton(
-                      onTap: () async{
-                        final int? amount = await
-                        Navigator.push<int>(
+                      onTap: () async {
+                        final int? amount = await Navigator.push<int>(
                           context,
                           MaterialPageRoute(builder: (context) => AddScreen()),
                         );
-                        if(amount != null){
+                        if (amount != null) {
                           widget.onAmountAdded(amount);
                         }
                       },
@@ -68,9 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 15),
                 BalanceCard(
-                  totalSpent:'₦ ${widget.totalSpent.toStringAsFixed(0)}',
+                  totalSpent: '₦ ${widget.totalSpent.toStringAsFixed(0)}',
                   budget: '₦ ${widget.budget.toStringAsFixed(0)}',
                   remaining: '₦ ${widget.remaining.toStringAsFixed(0)}',
+                  remainingPercentage: widget.remainingPercentage,
                 ),
                 SizedBox(height: 15),
                 AddCard(
@@ -338,13 +343,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class BalanceCard extends StatelessWidget {
   const BalanceCard({
-    super.key, required this.totalSpent,
+    super.key,
+    required this.totalSpent,
     required this.budget,
-    required this.remaining
+    required this.remaining,
+    required this.remainingPercentage,
   });
   final String totalSpent;
   final String budget;
   final String remaining;
+  final double remainingPercentage;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -384,10 +392,7 @@ class BalanceCard extends StatelessWidget {
                   child: Center(
                     child: Text(
                       '₦',
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 30,
-                      ),
+                      style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 30),
                     ),
                   ),
                 ),
@@ -406,10 +411,14 @@ class BalanceCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: SizedBox(
                 height: 15,
-                child: LinearProgressIndicator(
-                  value: 0.45,
-                  color: Color(0xFF030213),
-                  backgroundColor: Color(0xFF874BE1),
+                child: Transform.flip(
+                  flipX: true,
+                  child: LinearProgressIndicator(
+                    value: remainingPercentage,
+                    minHeight: 15,
+                    backgroundColor: Color(0xFF030213),
+                    color: Color(0xFF874BE1),
+                  ),
                 ),
               ),
             ),
