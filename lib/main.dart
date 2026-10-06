@@ -33,6 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   double totalSpent = 0;
   double get remaining => budget - totalSpent;
   double get remainingPercentage => budget == 0 ? 0 : remaining/budget;
+  double get usedPercentage => budget == 0 ? 0 : totalSpent/budget;
 
   @override
   void dispose() {
@@ -56,6 +57,7 @@ class _MainScreenState extends State<MainScreen> {
             totalSpent: totalSpent,
             remaining: remaining,
             remainingPercentage: remainingPercentage,
+            usedPercentage: usedPercentage,
             onAmountAdded: (amount){
               setState(() {
                 budget += amount;

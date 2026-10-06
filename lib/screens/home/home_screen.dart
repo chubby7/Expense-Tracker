@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
   final double totalSpent;
   final double remaining;
   final double remainingPercentage;
+  final double usedPercentage;
   const HomeScreen({
     super.key,
     required this.totalSpent,
@@ -20,6 +21,7 @@ class HomeScreen extends StatefulWidget {
     required this.remaining,
     required this.budget,
     required this.onAmountAdded,
+    required this.usedPercentage,
   });
 
   @override
@@ -76,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   budget: '₦ ${widget.budget.toStringAsFixed(0)}',
                   remaining: '₦ ${widget.remaining.toStringAsFixed(0)}',
                   remainingPercentage: widget.remainingPercentage,
+                  usedPercentage: widget.usedPercentage * 100,
                 ),
                 SizedBox(height: 15),
                 AddCard(
@@ -348,11 +351,13 @@ class BalanceCard extends StatelessWidget {
     required this.budget,
     required this.remaining,
     required this.remainingPercentage,
+    required this.usedPercentage,
   });
   final String totalSpent;
   final String budget;
   final String remaining;
   final double remainingPercentage;
+  final double usedPercentage;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -426,7 +431,7 @@ class BalanceCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('81.3% used', style: kSmallTextStyle),
+                Text('${usedPercentage.round()} % used', style: kSmallTextStyle),
                 Text('9 days remaining', style: kSmallTextStyle),
               ],
             ),
