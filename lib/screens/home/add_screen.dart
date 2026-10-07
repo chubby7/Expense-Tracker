@@ -11,6 +11,7 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
   final TextEditingController amountController = TextEditingController();
+  final TextEditingController durationController = TextEditingController();
 
   @override
   void dispose() {
@@ -152,6 +153,42 @@ class _AddScreenState extends State<AddScreen> {
                             amount: '50000',
                           ),
                         ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextField(
+                        controller: durationController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          hintText: 'Duration',
+                          suffixIcon: DropdownButton<String>(
+                            underline: const SizedBox(),
+                            items: const[
+                              DropdownMenuItem(
+                                value: '7 days',
+                                child: Text('7 days'),),
+                              DropdownMenuItem(
+                                value: '14 days',
+                                child: Text('14 days'),),
+                              DropdownMenuItem(
+                                value: '30 days',
+                                child: Text('30 days'),),
+                              DropdownMenuItem(
+                                value: '60 days',
+                                child: Text('60 days'),),
+                              DropdownMenuItem(
+                                value: '90 days',
+                                child: Text('90 days'),),
+                            ],
+                            onChanged: (value) {
+                              if (value != null){
+                                durationController.text = value;
+                              }
+                            },
+                          )
+                        ),
                       ),
                     ),
                   ],
